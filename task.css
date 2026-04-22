@@ -80,6 +80,15 @@ body {
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+
+}
+
+.product__remove {
+  background: green;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .product__add:hover {
@@ -88,4 +97,12 @@ body {
 
 .product-shadow {
   position: absolute;
+}
+
+.cart_hidden {
+  display: none;
+}
+
+.add_remove {
+  display: flex;
 }
