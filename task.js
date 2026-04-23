@@ -31,12 +31,13 @@ productAddBtn.forEach((btn) => {
         cartCard.classList.remove("cart_hidden");
         const product = e.target.closest(".product");
         let productInCart = `<div class="cart__product" data-id=${product.dataset.id}><img class="cart__product-image" src=${product.getElementsByClassName("product__image")[0].getAttribute("src")}><div class="cart__product-count">${product.getElementsByClassName("product__quantity-value")[0].innerText}</div></div>`;
-        Array.from(cart.children).forEach((child) => {
-            if (!inCartProductsId.includes(child.dataset.id)) {
-                inCartProductsId.push(child.dataset.id);
-            }
-        });
-        if (!inCartProductsId.includes(product.dataset.id)) {
+        // Array.from(cart.children).forEach((child) => {
+        //     if (!inCartProductsId.includes(child.dataset.id)) {
+        //         inCartProductsId.push(child.dataset.id);
+        //     }
+        // });
+        const isCartInProduct =  Array.from(cart.children).find(prod => prod.dataset.id == product.dataset.id);
+        if (!isCartInProduct) {
             cart.insertAdjacentHTML("beforeend", productInCart);
         } else {
             let foundIndex = null;
@@ -54,7 +55,8 @@ productAddBtn.forEach((btn) => {
 productRemoveBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
-        if (inCartProductsId.includes(product.dataset.id)) {
+        const isCartInProduct =  Array.from(cart.children).find(prod => prod.dataset.id == product.dataset.id);
+        if (isCartInProduct) {
             let foundIndex = null;
             for (let i=0; i < cart.children.length; i++) {
                 if (Number(cart.children[i].dataset.id) === Number(product.dataset.id)) {
